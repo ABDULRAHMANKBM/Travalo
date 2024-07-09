@@ -176,10 +176,12 @@ router.post('/login', async (req, res) => {
                 verificationQuery = "select token,token_expiry from user where email=?";
                 connection.query(verificationQuery, [user.email], async (err1, res) => {
                     if (!err1) {
+
                         console.log("enter !err1")
 
                         const currentDate = new Date();
                         const tokenExpiryDate = new Date(res[0].token_expiry);
+
                         console.log("Current Date:", currentDate.toLocaleString());
 
                         console.log("Token Expiry Date:", currentDate.toLocaleString());

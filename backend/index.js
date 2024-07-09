@@ -45,35 +45,21 @@ const user = require('./routes/user');
 const favourites = require('./routes/favourites');
 const reservation = require('./routes/reservation');
 const app = express();
-// const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
-// const csrfRoutes = require('./routes/csrfRoutes');
-
-// const csrfMiddleware = csurf({ cookie: true });
-// const csrfProtection = csrf({ cookie: true });
-
 
 app.use(cors({
-    credentials: true,
-    origin: ['http://localhost:4200']
+    origin: 'http://localhost:4200',  // Specify the exact frontend origin
+    credentials: true,  // Allow credentials (cookies, HTTP authentication)
+    allowedHeaders: ['Content-Type', 'Authorization'],  // Allow these headers
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']  // Allowed methods
 }));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
 app.use(cookieParser());
-// app.use(csrfProtection);
-// app.use(csrfMiddleware); // Mount csurf middleware before defining routes
-// Apply CSRF protection middleware to all routes
-// const csrfProtection = csrf({ cookie: { httpOnly: true } });
-// app.use(csrfProtection);
 
-// Apply CSRF token to all responses
-// app.use((req, res, next) => {
-//     res.cookie('XSRF-TOKEN', req.csrfToken());
-//     next();
-// });
 
-// app.use('/csrf', csrfRoutes);
 
 app.use('/hotel', hotel);
 app.use('/room', room);

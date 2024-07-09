@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 
 
 // const fileUpload = require('express-fileupload');
-const cors = require('cors');
+// const cors = require('cors');
 var multer = require("multer");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -23,7 +23,7 @@ const upload = multer({
     storage: storage
 })
 // const checkRole = require('../services/checkRole');
-router.use(cors());
+// router.use(cors());
 // router.use(csrfProtection);
 // router.use(express.json({ limit: '10mb' }));
 // router.use(fileUpload());
